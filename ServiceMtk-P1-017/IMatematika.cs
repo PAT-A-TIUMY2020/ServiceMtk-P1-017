@@ -13,33 +13,51 @@ namespace ServiceMtk_P1_017
     {
         [OperationContract]
         /* output->*/
+        [FaultContract(typeof(MathFault))]
         int Tambah(int a, int b); //method
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))]
         int Kurang(int a, int b); //input
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))]
         int Kali(int a, int b);
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))]
         int Bagi(int a, int b);
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))]
         Koordinat TKoordinat(Koordinat a, Koordinat b); //object dari class
 
         // TODO: Add your service operations here
     }
     [DataContract]
-    public class Koordinat
+    class MathFault
     {
-        private int _x, _y; //atribut
-        [DataMember]//membuka koordinat, x,y
-        public int X //properties
-        {
-            get { return _x; }
-            set { _x = value; }
-        }
         [DataMember]
-        public int Y //properties
+        public string Kode { get; set; }
+        [DataMember]
+        public string Pesan { get; set; }
+    }
+        public class Koordinat
         {
-            get { return _y; }
-            set { _y = value; }
+            private int _x, _y; //atribut
+            [DataMember]//membuka koordinat, x,y
+            public int X //properties
+            {
+                get { return _x; }
+                set { _x = value; }
+            }
+            [DataMember]
+            public int Y //properties
+            {
+                get { return _y; }
+                set { _y = value; }
+            }
+
         }
     }
-}
+
